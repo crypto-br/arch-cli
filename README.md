@@ -8,7 +8,7 @@ Este script foi projetado para facilitar o gerenciamento do time de Arquittura, 
 
 ## Funcionalidades
 - **Verificação de Dependências (`--deps`)**: Verifica e instala dependências necessárias como AWS CLI, Python3 e Prowler.
-- **Arch Prune (`--ap`)**: Inicia o Nuke Faster para limpeza de recursos AWS com base em status específicos.
+- **Arch Prune (`--ap`)**: Inicia o Arch Prune para limpeza de recursos AWS com base em status específicos.
 - **Prowler (`--prowler`)**: Executa o Prowler para auditoria de segurança da conta AWS, gerando relatórios em formatos CSV e HTML.
 - **Configuração de Perfil AWS CLI (`--np`)**: Auxilia na configuração de novos perfis no AWS CLI.
 - **Criação de Usuário de Suporte (`--lsu`)**: Cria um usuário administrativo de suporte na conta AWS.
