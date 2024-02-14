@@ -1,4 +1,4 @@
-# Faster CLI
+# Arch CLI
 
 ## Visão Geral
 Este script foi projetado para facilitar o gerenciamento do time de Infra da CloudFaster & CloudFaster Academy
