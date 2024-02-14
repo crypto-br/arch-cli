@@ -1,7 +1,7 @@
 # Arch CLI
 
 ## Visão Geral
-Este script foi projetado para facilitar o gerenciamento do time de Infra da CloudFaster & CloudFaster Academy
+Este script foi projetado para facilitar o gerenciamento do time de Arquittura, SRE e DevOps
 
 ## Versão
 - 1.0.0
