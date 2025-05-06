@@ -1,0 +1,304 @@
+{
+    "Reservations": [
+        {
+            "ReservationId": "r-0f7607df5254d3e1e",
+            "OwnerId": "992382425527",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Architecture": "arm64",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "AttachTime": "2024-09-12T12:03:05+00:00",
+                                "DeleteOnTermination": true,
+                                "Status": "attached",
+                                "VolumeId": "vol-05d709251c82fd6ff"
+                            }
+                        }
+                    ],
+                    "ClientToken": "4f817b51-0880-4e9b-92b2-4c7d14557423",
+                    "EbsOptimized": true,
+                    "EnaSupport": true,
+                    "Hypervisor": "xen",
+                    "IamInstanceProfile": {
+                        "Arn": "arn:aws:iam::992382425527:instance-profile/bastion-host-ssm",
+                        "Id": "AIPA6ODU2DG3ZENNI2AQ2"
+                    },
+                    "NetworkInterfaces": [
+                        {
+                            "Attachment": {
+                                "AttachTime": "2024-09-12T12:03:04+00:00",
+                                "AttachmentId": "eni-attach-0007c62b443c04da7",
+                                "DeleteOnTermination": true,
+                                "DeviceIndex": 0,
+                                "Status": "attached",
+                                "NetworkCardIndex": 0
+                            },
+                            "Description": "",
+                            "Groups": [
+                                {
+                                    "GroupId": "sg-02962bb87ae0fa61c",
+                                    "GroupName": "bastion-host-dev-sg"
+                                }
+                            ],
+                            "Ipv6Addresses": [],
+                            "MacAddress": "0a:50:5f:bf:e9:f9",
+                            "NetworkInterfaceId": "eni-03bf8a9241a4a3a64",
+                            "OwnerId": "992382425527",
+                            "PrivateDnsName": "ip-10-11-233-56.us-east-2.compute.internal",
+                            "PrivateIpAddress": "10.11.233.56",
+                            "PrivateIpAddresses": [
+                                {
+                                    "Primary": true,
+                                    "PrivateDnsName": "ip-10-11-233-56.us-east-2.compute.internal",
+                                    "PrivateIpAddress": "10.11.233.56"
+                                }
+                            ],
+                            "SourceDestCheck": true,
+                            "Status": "in-use",
+                            "SubnetId": "subnet-076635c500b61fbef",
+                            "VpcId": "vpc-06d26a0fa05692a20",
+                            "InterfaceType": "interface",
+                            "Operator": {
+                                "Managed": false
+                            }
+                        }
+                    ],
+                    "RootDeviceName": "/dev/xvda",
+                    "RootDeviceType": "ebs",
+                    "SecurityGroups": [
+                        {
+                            "GroupId": "sg-02962bb87ae0fa61c",
+                            "GroupName": "bastion-host-dev-sg"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Tags": [
+                        {
+                            "Key": "Name",
+                            "Value": "bastion-host-cilia-credito-dev"
+                        },
+                        {
+                            "Key": "slv_env",
+                            "Value": "dev"
+                        }
+                    ],
+                    "VirtualizationType": "hvm",
+                    "CpuOptions": {
+                        "CoreCount": 2,
+                        "ThreadsPerCore": 1
+                    },
+                    "CapacityReservationSpecification": {
+                        "CapacityReservationPreference": "open"
+                    },
+                    "HibernationOptions": {
+                        "Configured": false
+                    },
+                    "MetadataOptions": {
+                        "State": "applied",
+                        "HttpTokens": "required",
+                        "HttpPutResponseHopLimit": 2,
+                        "HttpEndpoint": "enabled",
+                        "HttpProtocolIpv6": "disabled",
+                        "InstanceMetadataTags": "disabled"
+                    },
+                    "EnclaveOptions": {
+                        "Enabled": false
+                    },
+                    "BootMode": "uefi",
+                    "PlatformDetails": "Linux/UNIX",
+                    "UsageOperation": "RunInstances",
+                    "UsageOperationUpdateTime": "2024-09-12T12:03:04+00:00",
+                    "PrivateDnsNameOptions": {
+                        "HostnameType": "ip-name",
+                        "EnableResourceNameDnsARecord": false,
+                        "EnableResourceNameDnsAAAARecord": false
+                    },
+                    "MaintenanceOptions": {
+                        "AutoRecovery": "default"
+                    },
+                    "CurrentInstanceBootMode": "uefi",
+                    "NetworkPerformanceOptions": {
+                        "BandwidthWeighting": "default"
+                    },
+                    "Operator": {
+                        "Managed": false
+                    },
+                    "InstanceId": "i-07dd8112e23cbfa91",
+                    "ImageId": "ami-0e10ed9d17659b906",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "PrivateDnsName": "ip-10-11-233-56.us-east-2.compute.internal",
+                    "PublicDnsName": "",
+                    "StateTransitionReason": "",
+                    "KeyName": "cilia-credito-bastion",
+                    "AmiLaunchIndex": 0,
+                    "ProductCodes": [],
+                    "InstanceType": "t4g.micro",
+                    "LaunchTime": "2024-09-12T12:03:04+00:00",
+                    "Placement": {
+                        "GroupName": "",
+                        "Tenancy": "default",
+                        "AvailabilityZone": "us-east-2c"
+                    },
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "SubnetId": "subnet-076635c500b61fbef",
+                    "VpcId": "vpc-06d26a0fa05692a20",
+                    "PrivateIpAddress": "10.11.233.56"
+                }
+            ]
+        },
+        {
+            "ReservationId": "r-040da3c1b6f2541e6",
+            "OwnerId": "992382425527",
+            "Groups": [],
+            "Instances": [
+                {
+                    "Architecture": "arm64",
+                    "BlockDeviceMappings": [
+                        {
+                            "DeviceName": "/dev/xvda",
+                            "Ebs": {
+                                "AttachTime": "2024-10-29T10:52:13+00:00",
+                                "DeleteOnTermination": true,
+                                "Status": "attached",
+                                "VolumeId": "vol-0444248fc5a23e2a8"
+                            }
+                        }
+                    ],
+                    "ClientToken": "20b84346-5e05-4583-9f9b-f14e1a2ac122",
+                    "EbsOptimized": true,
+                    "EnaSupport": true,
+                    "Hypervisor": "xen",
+                    "NetworkInterfaces": [
+                        {
+                            "Attachment": {
+                                "AttachTime": "2024-10-29T10:52:12+00:00",
+                                "AttachmentId": "eni-attach-09984c996be3a455e",
+                                "DeleteOnTermination": true,
+                                "DeviceIndex": 0,
+                                "Status": "attached",
+                                "NetworkCardIndex": 0
+                            },
+                            "Description": "",
+                            "Groups": [
+                                {
+                                    "GroupId": "sg-0e71477b7248db520",
+                                    "GroupName": "launch-wizard-1"
+                                }
+                            ],
+                            "Ipv6Addresses": [],
+                            "MacAddress": "02:28:df:8f:32:a7",
+                            "NetworkInterfaceId": "eni-0862d601793f2120d",
+                            "OwnerId": "992382425527",
+                            "PrivateDnsName": "ip-10-11-212-19.us-east-2.compute.internal",
+                            "PrivateIpAddress": "10.11.212.19",
+                            "PrivateIpAddresses": [
+                                {
+                                    "Primary": true,
+                                    "PrivateDnsName": "ip-10-11-212-19.us-east-2.compute.internal",
+                                    "PrivateIpAddress": "10.11.212.19"
+                                }
+                            ],
+                            "SourceDestCheck": true,
+                            "Status": "in-use",
+                            "SubnetId": "subnet-0214c55357b1c6a76",
+                            "VpcId": "vpc-06d26a0fa05692a20",
+                            "InterfaceType": "interface",
+                            "Operator": {
+                                "Managed": false
+                            }
+                        }
+                    ],
+                    "RootDeviceName": "/dev/xvda",
+                    "RootDeviceType": "ebs",
+                    "SecurityGroups": [
+                        {
+                            "GroupId": "sg-0e71477b7248db520",
+                            "GroupName": "launch-wizard-1"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Tags": [
+                        {
+                            "Key": "Name",
+                            "Value": "mailcatcher-cilia-credito-dev"
+                        }
+                    ],
+                    "VirtualizationType": "hvm",
+                    "CpuOptions": {
+                        "CoreCount": 2,
+                        "ThreadsPerCore": 1
+                    },
+                    "CapacityReservationSpecification": {
+                        "CapacityReservationPreference": "open"
+                    },
+                    "HibernationOptions": {
+                        "Configured": false
+                    },
+                    "MetadataOptions": {
+                        "State": "applied",
+                        "HttpTokens": "required",
+                        "HttpPutResponseHopLimit": 2,
+                        "HttpEndpoint": "enabled",
+                        "HttpProtocolIpv6": "disabled",
+                        "InstanceMetadataTags": "disabled"
+                    },
+                    "EnclaveOptions": {
+                        "Enabled": false
+                    },
+                    "BootMode": "uefi",
+                    "PlatformDetails": "Linux/UNIX",
+                    "UsageOperation": "RunInstances",
+                    "UsageOperationUpdateTime": "2024-10-29T10:52:12+00:00",
+                    "PrivateDnsNameOptions": {
+                        "HostnameType": "ip-name",
+                        "EnableResourceNameDnsARecord": false,
+                        "EnableResourceNameDnsAAAARecord": false
+                    },
+                    "MaintenanceOptions": {
+                        "AutoRecovery": "default"
+                    },
+                    "CurrentInstanceBootMode": "uefi",
+                    "NetworkPerformanceOptions": {
+                        "BandwidthWeighting": "default"
+                    },
+                    "Operator": {
+                        "Managed": false
+                    },
+                    "InstanceId": "i-0a16edb0099877be4",
+                    "ImageId": "ami-0727d62dd27b36279",
+                    "State": {
+                        "Code": 16,
+                        "Name": "running"
+                    },
+                    "PrivateDnsName": "ip-10-11-212-19.us-east-2.compute.internal",
+                    "PublicDnsName": "",
+                    "StateTransitionReason": "",
+                    "KeyName": "mailcatcher-cilia-credito-dev",
+                    "AmiLaunchIndex": 0,
+                    "ProductCodes": [],
+                    "InstanceType": "t4g.small",
+                    "LaunchTime": "2024-10-29T10:52:12+00:00",
+                    "Placement": {
+                        "GroupName": "",
+                        "Tenancy": "default",
+                        "AvailabilityZone": "us-east-2a"
+                    },
+                    "Monitoring": {
+                        "State": "disabled"
+                    },
+                    "SubnetId": "subnet-0214c55357b1c6a76",
+                    "VpcId": "vpc-06d26a0fa05692a20",
+                    "PrivateIpAddress": "10.11.212.19"
+                }
+            ]
+        }
+    ]
+}
