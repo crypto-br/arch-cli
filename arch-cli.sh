@@ -20,6 +20,7 @@ source "$SCRIPT_DIR/modules/security.sh"
 source "$SCRIPT_DIR/modules/automation.sh"
 source "$SCRIPT_DIR/modules/containers.sh"
 source "$SCRIPT_DIR/modules/database.sh"
+source "$SCRIPT_DIR/modules/finops.sh"
 
 # Configuração inicial
 setup_config_dir
@@ -43,6 +44,7 @@ show_interactive_menu() {
     echo "10. Automação de Rotinas"
     echo "11. Gerenciamento de Containers"
     echo "12. Gerenciamento de Banco de Dados"
+    echo "13. AWS FinOps Dashboard"
     echo "0. Sair"
     
     echo -n "Escolha uma opção: "
@@ -94,6 +96,9 @@ show_interactive_menu() {
             ;;
         12)
             database_menu
+            ;;
+        13)
+            finops_menu
             ;;
         0)
             echo "Saindo..."
@@ -181,6 +186,9 @@ main() {
             ;;
         --database|-database)
             database_menu
+            ;;
+        --finops|-finops)
+            finops_menu
             ;;
         --help|-help|*)
             show_help

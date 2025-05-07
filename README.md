@@ -6,6 +6,20 @@ Este script foi projetado para facilitar o gerenciamento do time de Arquitetura,
 ## Versão
 - 3.0.0
 
+## Instalação
+
+### Via pip (recomendado)
+```bash
+pip install arch-cli
+```
+
+### Instalação manual
+```bash
+git clone <repositorio>
+cd arch-cli
+pip install -e .
+```
+
 ## Funcionalidades
 - **Verificação de Dependências (`--deps`)**: Verifica e instala dependências necessárias como AWS CLI, Python3 e Prowler, com suporte a múltiplos sistemas operacionais.
 - **Arch Prune (`--ap`)**: Inicia o Arch Prune para limpeza de recursos AWS com base em status específicos.
@@ -19,6 +33,7 @@ Este script foi projetado para facilitar o gerenciamento do time de Arquitetura,
 - **Automação de Rotinas (`--automation`)**: Gerencia backups e agenda tarefas recorrentes.
 - **Gerenciamento de Containers (`--containers`)**: Gerencia clusters EKS, serviços ECS e imagens ECR.
 - **Gerenciamento de Banco de Dados (`--database`)**: Gerencia instâncias RDS e tabelas DynamoDB.
+- **AWS FinOps Dashboard (`--finops`)**: Integração com o aws-finops-dashboard para visualização e gerenciamento de custos AWS.
 
 ## Pré-requisitos
 - AWS CLI
@@ -47,22 +62,55 @@ arch-cli/
     └── arch-prune.sh        # Script do Arch Prune
 ```
 
-## Instalação e Uso
-Clone o repositório e torne o script executável:
+## Uso
+
+### Como comando Python
+Após a instalação via pip, você pode usar o arch-cli como um comando:
+
 ```bash
-git clone <repositorio>
-cd arch-cli
-chmod +x arch-cli.sh
+# Executar o menu interativo
+arch-cli
+
+# Verificar dependências
+arch-cli deps
+
+# Executar o Prowler
+arch-cli prowler
+
+# Configurar novo perfil AWS
+arch-cli np
+
+# Listar recursos AWS
+arch-cli list
+
+# Criar usuário de suporte
+arch-cli lsu --acc <Account ID>
+
+# Acessar o AWS FinOps Dashboard
+arch-cli finops
 ```
 
-Execute o script com a opção desejada:
-```bash
-./arch-cli.sh --option
-```
+### Como script Bash
+Você também pode executar o script bash diretamente:
 
-Ou execute sem argumentos para acessar o menu interativo:
 ```bash
+# Verificar dependências
+./arch-cli.sh --deps
+
+# Executar Prowler
+./arch-cli.sh --prowler
+
+# Configurar novo perfil AWS
+./arch-cli.sh --np
+
+# Listar recursos AWS
+./arch-cli.sh --list
+
+# Acessar menu interativo
 ./arch-cli.sh
+
+# Acessar o AWS FinOps Dashboard
+./arch-cli.sh --finops
 ```
 
 ## Opções
@@ -85,10 +133,14 @@ Ou execute sem argumentos para acessar o menu interativo:
 O script mantém logs detalhados em `~/.arch-cli/arch-cli.log` para facilitar a depuração e auditoria.
 
 ## Compatibilidade
-O script é compatível com:
+
+O Arch CLI é compatível com:
 - Ubuntu/Debian
 - Red Hat/CentOS
+- Amazon Linux
 - macOS
+
+O script detecta automaticamente o sistema operacional e instala as dependências necessárias de acordo com a plataforma.
 
 ## Melhorias na Versão 3.0
 - Adição de funcionalidades para times de SRE, Infra e DevOps

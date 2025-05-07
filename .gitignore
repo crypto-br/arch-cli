@@ -1,0 +1,58 @@
+# Arch CLI .gitignore
+
+# Logs
+*.log
+~/.arch-cli/
+logs/
+
+# Prowler reports
+prowler-output/
+*.html
+*.csv
+*-report.*
+
+# AWS exported data
+aws_resources/
+cloudwatch_logs/
+exports/
+*.json
+*.yaml
+*.yml
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+*.swp
+*.swo
+
+# Configuration files with potential credentials
+.env
+*_config
+*credentials*
+*.pem
+*.key
+
+# Python virtual environment
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node modules if any
+node_modules/
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

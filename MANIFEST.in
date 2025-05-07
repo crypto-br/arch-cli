@@ -1,0 +1,8 @@
+include arch-cli.sh
+include modules/*.sh
+include README.md
+include CHANGELOG.md
+include CONTRIBUTING.md
+include LICENSE
+include pyproject.toml
+include setup.py

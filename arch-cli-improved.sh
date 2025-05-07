@@ -73,7 +73,6 @@ ${GREEN}
  \__,_|_|  \___|_| |_|      \___|_|_| v2.0${NC}
 " 
     echo "Created by: Luiz Machado (@cryptobr)"
-    echo "Improved by: Amazon Q"
     echo "######################################################################"
     echo ""
 }
@@ -319,7 +318,7 @@ run_arch_prune() {
         log "ERROR" "Script arch-prune.sh não encontrado."
         echo "Script arch-prune.sh não encontrado em ../arch-prune/"
         return 1
-    }
+    fi
     
     echo "Iniciando o ${GREEN}Arch Prune${NC} com status: $status..."
     cd ../arch-prune/ && ./arch-prune.sh "$status"
