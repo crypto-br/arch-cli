@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "arch-cli"
-version = "3.0.0"
+version = "3.2.0"
 description = "Ferramenta para gerenciamento de times de Arquitetura, SRE e DevOps com foco em AWS"
 readme = "README.md"
 authors = [

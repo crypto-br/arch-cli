@@ -1,6 +1,6 @@
 #!/bin/bash
 # arch-cli.sh - Ferramenta para gerenciamento de contas AWS
-# Versão 3.0.0
+# Versão 3.2.0
 # Autor: Luiz Machado (@cryptobr)
 
 # Carregar módulos
@@ -9,7 +9,6 @@ source "$SCRIPT_DIR/modules/utils.sh"
 source "$SCRIPT_DIR/modules/dependencies.sh"
 source "$SCRIPT_DIR/modules/aws_profile.sh"
 source "$SCRIPT_DIR/modules/prowler.sh"
-source "$SCRIPT_DIR/modules/arch_prune.sh"
 source "$SCRIPT_DIR/modules/support_user.sh"
 source "$SCRIPT_DIR/modules/aws_resources.sh"
 
@@ -31,20 +30,24 @@ show_interactive_menu() {
     clear
     show_header
     
+    local active_profile=$(get_active_profile)
+    echo -e "${BLUE}Perfil AWS ativo:${NC} $active_profile"
+    echo
+    
     echo "Menu Principal:"
     echo "1. Verificar dependências"
     echo "2. Configurar perfil AWS"
     echo "3. Executar Prowler"
-    echo "4. Executar Arch Prune"
-    echo "5. Criar usuário de suporte"
-    echo "6. Listar recursos AWS"
-    echo "7. Monitoramento e Observabilidade"
-    echo "8. Otimização de Custos"
-    echo "9. Segurança e Compliance"
-    echo "10. Automação de Rotinas"
-    echo "11. Gerenciamento de Containers"
-    echo "12. Gerenciamento de Banco de Dados"
-    echo "13. AWS FinOps Dashboard"
+    echo "4. Criar usuário de suporte"
+    echo "5. Listar recursos AWS"
+    echo "6. Monitoramento e Observabilidade"
+    echo "7. Otimização de Custos"
+    echo "8. Segurança e Compliance"
+    echo "9. Automação de Rotinas"
+    echo "10. Gerenciamento de Containers"
+    echo "11. Gerenciamento de Banco de Dados"
+    echo "12. AWS FinOps Dashboard"
+    echo "13. Trocar perfil AWS ativo"
     echo "0. Sair"
     
     echo -n "Escolha uma opção: "
@@ -61,44 +64,36 @@ show_interactive_menu() {
             run_prowler
             ;;
         4)
-            echo "Informe o status para o Arch Prune (forCleanUp, available, maintenance, underAnalysis):"
-            read -r status
-            if [[ "$status" =~ ^(forCleanUp|available|maintenance|underAnalysis)$ ]]; then
-                run_arch_prune "$status"
-            else
-                log "ERROR" "Status inválido: $status"
-                echo "[ERRO] - Status inválido: $status"
-                echo "Status válidos: forCleanUp, available, maintenance, underAnalysis"
-            fi
-            ;;
-        5)
             echo "Informe o Account ID:"
             read -r account_id
             create_support_user "$account_id"
             ;;
-        6)
+        5)
             list_aws_resources
             ;;
-        7)
+        6)
             monitoring_menu
             ;;
-        8)
+        7)
             cost_optimization_menu
             ;;
-        9)
+        8)
             security_menu
             ;;
-        10)
+        9)
             automation_menu
             ;;
-        11)
+        10)
             containers_menu
             ;;
-        12)
+        11)
             database_menu
             ;;
-        13)
+        12)
             finops_menu
+            ;;
+        13)
+            switch_profile_menu
             ;;
         0)
             echo "Saindo..."
@@ -127,22 +122,6 @@ main() {
     case "$1" in
         --deps|-deps)
             check_dependencies
-            ;;
-        --ap|-ap)
-            if [ -z "$2" ]; then
-                log "ERROR" "Status não informado."
-                echo "[ERRO] - Status da conta não informado"
-                echo "Informe o tipo de status que deseja executar: forCleanUp, available, maintenance, underAnalysis"
-                echo "ex: --ap forCleanUp"
-                exit 1
-            elif [[ "$2" =~ ^(forCleanUp|available|maintenance|underAnalysis)$ ]]; then
-                run_arch_prune "$2"
-            else
-                log "ERROR" "Status inválido: $2"
-                echo "[ERRO] - Status inválido: $2"
-                echo "Status válidos: forCleanUp, available, maintenance, underAnalysis"
-                exit 1
-            fi
             ;;
         --prowler|-prowler)
             run_prowler
@@ -189,6 +168,20 @@ main() {
             ;;
         --finops|-finops)
             finops_menu
+            ;;
+        --profile|-profile)
+            if [ -z "$2" ]; then
+                switch_profile_menu
+            else
+                # Verificar se o perfil existe
+                if aws configure list --profile "$2" &> /dev/null; then
+                    set_active_profile "$2"
+                else
+                    log "ERROR" "Perfil '$2' não encontrado."
+                    echo "Perfil '$2' não encontrado. Verifique se o perfil existe."
+                    exit 1
+                fi
+            fi
             ;;
         --help|-help|*)
             show_help

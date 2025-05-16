@@ -73,4 +73,12 @@ configure_profile() {
         echo "Opção inválida. Saindo..."
         exit 1
     fi
+    
+    # Perguntar se deseja definir como perfil ativo
+    echo "Deseja definir este perfil como ativo? [s/n]"
+    read -r set_active
+    
+    if [[ "$set_active" =~ ^[Ss]$ ]]; then
+        set_active_profile "$profile_name"
+    fi
 }

@@ -25,6 +25,8 @@ exports/
 .DS_Store
 *.swp
 *.swo
+AmazonQ.md
+CHANGELOG.md
 
 # Configuration files with potential credentials
 .env

@@ -4,7 +4,7 @@
 O Arch CLI é uma ferramenta para gerenciamento de times de Arquitetura, SRE e DevOps, oferecendo funcionalidades para administração de contas AWS. Este documento registra o processo de desenvolvimento e melhorias implementadas com a ajuda do Amazon Q.
 
 ## Versão Atual
-- 3.0.0
+- 3.2.0
 
 ## Melhorias Implementadas
 
@@ -25,6 +25,8 @@ O Arch CLI é uma ferramenta para gerenciamento de times de Arquitetura, SRE e D
 - Gerenciamento de containers (EKS, ECS, ECR)
 - Gerenciamento de banco de dados (RDS, DynamoDB)
 - Integração com o AWS FinOps Dashboard para visualização e gerenciamento de custos
+- Sistema de perfil AWS ativo persistente para evitar seleção repetitiva
+- Menu para troca rápida de perfil AWS
 
 ## Próximos Passos
 - Implementar testes automatizados

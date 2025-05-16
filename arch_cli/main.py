@@ -26,7 +26,7 @@ def show_header():
     header.append("  __ _ _ __ ___| |__         ___| (_)\n", style="green")
     header.append(" / _` | '__/ __| '_ \\ _____ / __| | |\n", style="green")
     header.append("| (_| | | | (__| | | |_____| (__| | |\n", style="green")
-    header.append(" \\__,_|_|  \\___|_| |_|      \\___|_|_| v3.0\n", style="green")
+    header.append(" \\__,_|_|  \\___|_| |_|      \\___|_|_| v3.2\n", style="green")
     header.append("\n")
     header.append("Created by: Luiz Machado (@cryptobr)\n")
     
@@ -34,7 +34,7 @@ def show_header():
 
 @click.group(invoke_without_command=True)
 @click.pass_context
-@click.version_option(version="3.0.0")
+@click.version_option(version="3.2.0")
 def main(ctx):
     """Arch CLI - Ferramenta para gerenciamento de times de Arquitetura, SRE e DevOps com foco em AWS"""
     if ctx.invoked_subcommand is None:
@@ -52,12 +52,6 @@ def deps(python):
     else:
         # Usar a implementação Bash
         subprocess.run(["/bin/bash", BASH_SCRIPT, "--deps"])
-
-@main.command()
-@click.argument("status", type=click.Choice(["forCleanUp", "available", "maintenance", "underAnalysis"]))
-def ap(status):
-    """Inicia o Arch Prune com o status especificado"""
-    subprocess.run(["/bin/bash", BASH_SCRIPT, "--ap", status])
 
 @main.command()
 def prowler():
@@ -110,6 +104,14 @@ def database():
     """Acessa o menu de gerenciamento de banco de dados"""
     subprocess.run(["/bin/bash", BASH_SCRIPT, "--database"])
 
+@main.command()
+@click.argument("profile_name", required=False)
+def profile(profile_name):
+    """Define ou gerencia o perfil AWS ativo"""
+    if profile_name:
+        subprocess.run(["/bin/bash", BASH_SCRIPT, "--profile", profile_name])
+    else:
+        subprocess.run(["/bin/bash", BASH_SCRIPT, "--profile"])
 @main.command()
 def finops():
     """Acessa o menu do AWS FinOps Dashboard"""

@@ -4,7 +4,7 @@
 Este script foi projetado para facilitar o gerenciamento do time de Arquitetura, SRE e DevOps, oferecendo ferramentas para administração de contas AWS.
 
 ## Versão
-- 3.0.0
+- 3.2.0
 
 ## Instalação
 
@@ -22,7 +22,6 @@ pip install -e .
 
 ## Funcionalidades
 - **Verificação de Dependências (`--deps`)**: Verifica e instala dependências necessárias como AWS CLI, Python3 e Prowler, com suporte a múltiplos sistemas operacionais.
-- **Arch Prune (`--ap`)**: Inicia o Arch Prune para limpeza de recursos AWS com base em status específicos.
 - **Prowler (`--prowler`)**: Executa o Prowler para auditoria de segurança da conta AWS, gerando relatórios em formatos CSV e HTML com barra de progresso.
 - **Configuração de Perfil AWS CLI (`--np`)**: Auxilia na configuração de novos perfis no AWS CLI, incluindo suporte para AWS SSO.
 - **Criação de Usuário de Suporte (`--lsu`)**: Cria um usuário administrativo de suporte na conta AWS.
@@ -34,6 +33,7 @@ pip install -e .
 - **Gerenciamento de Containers (`--containers`)**: Gerencia clusters EKS, serviços ECS e imagens ECR.
 - **Gerenciamento de Banco de Dados (`--database`)**: Gerencia instâncias RDS e tabelas DynamoDB.
 - **AWS FinOps Dashboard (`--finops`)**: Integração com o aws-finops-dashboard para visualização e gerenciamento de custos AWS.
+- **Gerenciamento de Perfil Ativo (`--profile`)**: Permite definir e alternar entre perfis AWS CLI sem precisar selecioná-los repetidamente.
 
 ## Pré-requisitos
 - AWS CLI
@@ -86,6 +86,12 @@ arch-cli list
 # Criar usuário de suporte
 arch-cli lsu --acc <Account ID>
 
+# Definir perfil AWS ativo
+arch-cli profile <nome-do-perfil>
+
+# Gerenciar perfis AWS
+arch-cli profile
+
 # Acessar o AWS FinOps Dashboard
 arch-cli finops
 ```
@@ -106,6 +112,18 @@ Você também pode executar o script bash diretamente:
 # Listar recursos AWS
 ./arch-cli.sh --list
 
+# Definir perfil AWS ativo
+./arch-cli.sh --profile <nome-do-perfil>
+
+# Gerenciar perfis AWS
+./arch-cli.sh --profile
+
+# Acessar menu interativo
+./arch-cli.sh --np
+
+# Listar recursos AWS
+./arch-cli.sh --list
+
 # Acessar menu interativo
 ./arch-cli.sh
 
@@ -115,8 +133,6 @@ Você também pode executar o script bash diretamente:
 
 ## Opções
 - `--deps`, `-deps`: Verifica e instala as dependências necessárias.
-- `--ap`, `-ap <status>`: Inicia o Arch Prune com o status especificado.
-  - Status válidos: `forCleanUp`, `available`, `maintenance`, `underAnalysis`
 - `--prowler`, `-prowler`: Executa o Prowler para auditoria de segurança.
 - `--np`, `-np`: Configura um novo perfil no AWS CLI (suporta chaves de acesso e SSO).
 - `--lsu`, `-lsu --acc <Account ID>`: Cria um usuário administrativo de suporte na conta AWS.
@@ -127,6 +143,7 @@ Você também pode executar o script bash diretamente:
 - `--automation`, `-automation`: Acessa o menu de automação de rotinas.
 - `--containers`, `-containers`: Acessa o menu de gerenciamento de containers.
 - `--database`, `-database`: Acessa o menu de gerenciamento de banco de dados.
+- `--profile`, `-profile [nome]`: Define ou gerencia o perfil AWS ativo.
 - `--help`, `-help`: Mostra as opções disponíveis.
 
 ## Logs e Configuração
