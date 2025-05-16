@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arch-cli"
+version = "3.2.0"
+description = "Ferramenta para gerenciamento de times de Arquitetura, SRE e DevOps com foco em AWS"
+readme = "README.md"
+authors = [
+    {name = "Luiz Machado", email = "cryptobr@example.com"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Topic :: Utilities",
+    "Topic :: System :: Systems Administration",
+]
+keywords = ["aws", "cli", "devops", "sre", "architecture"]
+dependencies = [
+    "click>=8.0.0",
+    "boto3>=1.20.0",
+    "rich>=10.0.0",
+    "pyyaml>=6.0",
+]
+requires-python = ">=3.8"
+
+[project.urls]
+"Homepage" = "https://github.com/yourusername/arch-cli"
+"Bug Tracker" = "https://github.com/yourusername/arch-cli/issues"
+
+[project.scripts]
+arch-cli = "arch_cli.main:main"
+
+[tool.setuptools]
+packages = ["arch_cli"]
