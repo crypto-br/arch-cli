@@ -45,21 +45,18 @@ pip install -e .
 arch-cli/
 ├── arch-cli.sh              # Script principal
 ├── modules/                 # Módulos separados por funcionalidade
-│   ├── utils.sh             # Funções utilitárias
-│   ├── dependencies.sh      # Verificação de dependências
-│   ├── aws_profile.sh       # Configuração de perfis AWS
-│   ├── prowler.sh           # Execução do Prowler
-│   ├── arch_prune.sh        # Execução do Arch Prune
-│   ├── support_user.sh      # Criação de usuário de suporte
-│   ├── aws_resources.sh     # Listagem de recursos AWS
-│   ├── monitoring.sh        # Monitoramento e observabilidade
-│   ├── cost_optimization.sh # Otimização de custos
-│   ├── security.sh          # Segurança e compliance
-│   ├── automation.sh        # Automação de rotinas
-│   ├── containers.sh        # Gerenciamento de containers
-│   └── database.sh          # Gerenciamento de banco de dados
-└── arch-prune/              # Diretório do Arch Prune (externo)
-    └── arch-prune.sh        # Script do Arch Prune
+   ├── utils.sh             # Funções utilitárias
+   ├── dependencies.sh      # Verificação de dependências
+   ├── aws_profile.sh       # Configuração de perfis AWS
+   ├── prowler.sh           # Execução do Prowler
+   ├── support_user.sh      # Criação de usuário de suporte
+   ├── aws_resources.sh     # Listagem de recursos AWS
+   ├── monitoring.sh        # Monitoramento e observabilidade
+   ├── cost_optimization.sh # Otimização de custos
+   ├── security.sh          # Segurança e compliance
+   ├── automation.sh        # Automação de rotinas
+   ├── containers.sh        # Gerenciamento de containers
+   └── database.sh          # Gerenciamento de banco de dados
 ```
 
 ## Uso
