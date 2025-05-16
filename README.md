@@ -8,12 +8,6 @@ Este script foi projetado para facilitar o gerenciamento do time de Arquitetura,
 
 ## Instalação
 
-### Via pip (recomendado)
-```bash
-pip install arch-cli
-```
-
-### Instalação manual
 ```bash
 git clone <repositorio>
 cd arch-cli
