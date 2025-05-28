@@ -121,44 +121,233 @@ manage_ecs_services() {
             aws ecs list-clusters --profile "$profile_name" --query 'clusterArns[]' --output table
             ;;
         2)
-            echo "Informe o nome ou ARN do cluster:"
-            read -r cluster_name
+            echo "Obtendo lista de clusters ECS..."
+            clusters=$(aws ecs list-clusters --profile "$profile_name" --query 'clusterArns[]' --output text)
+            
+            if [ -z "$clusters" ]; then
+                echo "Nenhum cluster ECS encontrado."
+                return 1
+            fi
+            
+            echo "Clusters ECS disponíveis:"
+            i=1
+            declare -a cluster_array
+            
+            for cluster in $clusters; do
+                cluster_name=$(echo "$cluster" | awk -F'/' '{print $2}')
+                echo "[$i] $cluster_name"
+                cluster_array[$i]=$cluster
+                ((i++))
+            done
+            
+            echo "Selecione o número do cluster:"
+            read -r cluster_idx
+            
+            if ! [[ "$cluster_idx" =~ ^[0-9]+$ ]] || [ "$cluster_idx" -lt 1 ] || [ "$cluster_idx" -gt $((i-1)) ]; then
+                echo "Seleção inválida."
+                return 1
+            fi
+            
+            selected_cluster=${cluster_array[$cluster_idx]}
+            cluster_name=$(echo "$selected_cluster" | awk -F'/' '{print $2}')
             
             echo "Listando serviços do cluster $cluster_name..."
-            aws ecs list-services --profile "$profile_name" --cluster "$cluster_name" --query 'serviceArns[]' --output table
+            aws ecs list-services --profile "$profile_name" --cluster "$selected_cluster" --query 'serviceArns[]' --output table
             ;;
         3)
-            echo "Informe o nome ou ARN do cluster:"
-            read -r cluster_name
+            echo "Obtendo lista de clusters ECS..."
+            clusters=$(aws ecs list-clusters --profile "$profile_name" --query 'clusterArns[]' --output text)
             
-            echo "Informe o nome ou ARN do serviço:"
-            read -r service_name
+            if [ -z "$clusters" ]; then
+                echo "Nenhum cluster ECS encontrado."
+                return 1
+            fi
+            
+            echo "Clusters ECS disponíveis:"
+            i=1
+            declare -a cluster_array
+            
+            for cluster in $clusters; do
+                cluster_name=$(echo "$cluster" | awk -F'/' '{print $2}')
+                echo "[$i] $cluster_name"
+                cluster_array[$i]=$cluster
+                ((i++))
+            done
+            
+            echo "Selecione o número do cluster:"
+            read -r cluster_idx
+            
+            if ! [[ "$cluster_idx" =~ ^[0-9]+$ ]] || [ "$cluster_idx" -lt 1 ] || [ "$cluster_idx" -gt $((i-1)) ]; then
+                echo "Seleção inválida."
+                return 1
+            fi
+            
+            selected_cluster=${cluster_array[$cluster_idx]}
+            cluster_name=$(echo "$selected_cluster" | awk -F'/' '{print $2}')
+            
+            echo "Obtendo lista de serviços do cluster $cluster_name..."
+            services=$(aws ecs list-services --profile "$profile_name" --cluster "$selected_cluster" --query 'serviceArns[]' --output text)
+            
+            if [ -z "$services" ]; then
+                echo "Nenhum serviço encontrado no cluster."
+                return 1
+            fi
+            
+            echo "Serviços ECS disponíveis:"
+            j=1
+            declare -a service_array
+            
+            for service in $services; do
+                service_name=$(echo "$service" | awk -F'/' '{print $3}')
+                echo "[$j] $service_name"
+                service_array[$j]=$service
+                ((j++))
+            done
+            
+            echo "Selecione o número do serviço:"
+            read -r service_idx
+            
+            if ! [[ "$service_idx" =~ ^[0-9]+$ ]] || [ "$service_idx" -lt 1 ] || [ "$service_idx" -gt $((j-1)) ]; then
+                echo "Seleção inválida."
+                return 1
+            fi
+            
+            selected_service=${service_array[$service_idx]}
+            service_name=$(echo "$selected_service" | awk -F'/' '{print $3}')
             
             echo "Descrevendo serviço $service_name..."
-            aws ecs describe-services --profile "$profile_name" --cluster "$cluster_name" --services "$service_name" --query 'services[*].[serviceName,status,desiredCount,runningCount,pendingCount,launchType]' --output table
+            aws ecs describe-services --profile "$profile_name" --cluster "$selected_cluster" --services "$service_name" --query 'services[*].[serviceName,status,desiredCount,runningCount,pendingCount,launchType]' --output table
             ;;
         4)
-            echo "Informe o nome ou ARN do cluster:"
-            read -r cluster_name
+            echo "Obtendo lista de clusters ECS..."
+            clusters=$(aws ecs list-clusters --profile "$profile_name" --query 'clusterArns[]' --output text)
             
-            echo "Informe o nome ou ARN do serviço:"
-            read -r service_name
+            if [ -z "$clusters" ]; then
+                echo "Nenhum cluster ECS encontrado."
+                return 1
+            fi
+            
+            echo "Clusters ECS disponíveis:"
+            i=1
+            declare -a cluster_array
+            
+            for cluster in $clusters; do
+                cluster_name=$(echo "$cluster" | awk -F'/' '{print $2}')
+                echo "[$i] $cluster_name"
+                cluster_array[$i]=$cluster
+                ((i++))
+            done
+            
+            echo "Selecione o número do cluster:"
+            read -r cluster_idx
+            
+            if ! [[ "$cluster_idx" =~ ^[0-9]+$ ]] || [ "$cluster_idx" -lt 1 ] || [ "$cluster_idx" -gt $((i-1)) ]; then
+                echo "Seleção inválida."
+                return 1
+            fi
+            
+            selected_cluster=${cluster_array[$cluster_idx]}
+            cluster_name=$(echo "$selected_cluster" | awk -F'/' '{print $2}')
+            
+            echo "Obtendo lista de serviços do cluster $cluster_name..."
+            services=$(aws ecs list-services --profile "$profile_name" --cluster "$selected_cluster" --query 'serviceArns[]' --output text)
+            
+            if [ -z "$services" ]; then
+                echo "Nenhum serviço encontrado no cluster."
+                return 1
+            fi
+            
+            echo "Serviços ECS disponíveis:"
+            j=1
+            declare -a service_array
+            
+            for service in $services; do
+                service_name=$(echo "$service" | awk -F'/' '{print $3}')
+                echo "[$j] $service_name"
+                service_array[$j]=$service
+                ((j++))
+            done
+            
+            echo "Selecione o número do serviço:"
+            read -r service_idx
+            
+            if ! [[ "$service_idx" =~ ^[0-9]+$ ]] || [ "$service_idx" -lt 1 ] || [ "$service_idx" -gt $((j-1)) ]; then
+                echo "Seleção inválida."
+                return 1
+            fi
+            
+            selected_service=${service_array[$service_idx]}
+            service_name=$(echo "$selected_service" | awk -F'/' '{print $3}')
             
             echo "Listando tarefas do serviço $service_name..."
-            aws ecs list-tasks --profile "$profile_name" --cluster "$cluster_name" --service-name "$service_name" --query 'taskArns[]' --output table
+            aws ecs list-tasks --profile "$profile_name" --cluster "$selected_cluster" --service-name "$service_name" --query 'taskArns[]' --output table
             ;;
         5)
-            echo "Informe o nome ou ARN do cluster:"
-            read -r cluster_name
+            echo "Obtendo lista de clusters ECS..."
+            clusters=$(aws ecs list-clusters --profile "$profile_name" --query 'clusterArns[]' --output text)
             
-            echo "Informe o nome ou ARN do serviço:"
-            read -r service_name
+            if [ -z "$clusters" ]; then
+                echo "Nenhum cluster ECS encontrado."
+                return 1
+            fi
             
-            echo "Informe o número desejado de tarefas:"
+            echo "Clusters ECS disponíveis:"
+            i=1
+            declare -a cluster_array
+            
+            for cluster in $clusters; do
+                cluster_name=$(echo "$cluster" | awk -F'/' '{print $2}')
+                echo "[$i] $cluster_name"
+                cluster_array[$i]=$cluster
+                ((i++))
+            done
+            
+            echo "Selecione o número do cluster:"
+            read -r cluster_idx
+            
+            if ! [[ "$cluster_idx" =~ ^[0-9]+$ ]] || [ "$cluster_idx" -lt 1 ] || [ "$cluster_idx" -gt $((i-1)) ]; then
+                echo "Seleção inválida."
+                return 1
+            fi
+            
+            selected_cluster=${cluster_array[$cluster_idx]}
+            cluster_name=$(echo "$selected_cluster" | awk -F'/' '{print $2}')
+            
+            echo "Obtendo lista de serviços do cluster $cluster_name..."
+            services=$(aws ecs list-services --profile "$profile_name" --cluster "$selected_cluster" --query 'serviceArns[]' --output text)
+            
+            if [ -z "$services" ]; then
+                echo "Nenhum serviço encontrado no cluster."
+                return 1
+            fi
+            
+            echo "Serviços ECS disponíveis:"
+            j=1
+            declare -a service_array
+            
+            for service in $services; do
+                service_name=$(echo "$service" | awk -F'/' '{print $3}')
+                echo "[$j] $service_name"
+                service_array[$j]=$service
+                ((j++))
+            done
+            
+            echo "Selecione o número do serviço:"
+            read -r service_idx
+            
+            if ! [[ "$service_idx" =~ ^[0-9]+$ ]] || [ "$service_idx" -lt 1 ] || [ "$service_idx" -gt $((j-1)) ]; then
+                echo "Seleção inválida."
+                return 1
+            fi
+            
+            selected_service=${service_array[$service_idx]}
+            service_name=$(echo "$selected_service" | awk -F'/' '{print $3}')
+            
+            echo "Informe o número desejado de tarefas para o serviço $service_name:"
             read -r desired_count
             
             echo "Atualizando serviço $service_name para $desired_count tarefas..."
-            aws ecs update-service --profile "$profile_name" --cluster "$cluster_name" --service "$service_name" --desired-count "$desired_count"
+            aws ecs update-service --profile "$profile_name" --cluster "$selected_cluster" --service "$service_name" --desired-count "$desired_count"
             
             if [ $? -eq 0 ]; then
                 log "SUCCESS" "Serviço atualizado com sucesso."
