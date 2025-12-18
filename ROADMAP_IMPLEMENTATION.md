@@ -2,7 +2,7 @@
 
 ## 📊 Status Geral
 - **Início**: 17/12/2025
-- **Versão Atual**: 3.2.0
+- **Versão Atual**: 4.0.0
 - **Versão Alvo**: 4.0.0
 - **Progresso Total**: 0% ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜
 

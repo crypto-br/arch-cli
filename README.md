@@ -4,7 +4,7 @@
 Este script foi projetado para facilitar o gerenciamento do time de Arquitetura, SRE e DevOps, oferecendo ferramentas para administração de contas AWS.
 
 ## Versão
-- 3.2.0
+- 4.0.0
 
 ## Instalação
 

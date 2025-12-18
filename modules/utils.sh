@@ -1,6 +1,6 @@
 #!/bin/bash
 # utils.sh - Funções utilitárias para o arch-cli
-# Versão 3.2.0
+# Versão 4.0.0
 
 # Configurações
 CONFIG_DIR="$HOME/.arch-cli"
@@ -76,7 +76,7 @@ ${GREEN}
   __ _ _ __ ___| |__         ___| (_)
  / _\` | '__/ __| '_ \ _____ / __| | |
 | (_| | | | (__| | | |_____| (__| | |
- \__,_|_|  \___|_| |_|      \___|_|_| v3.2${NC}
+ \__,_|_|  \___|_| |_|      \___|_|_| v4.0${NC}
 " 
     echo "Created by: Luiz Machado (@cryptobr)"
     echo "######################################################################"

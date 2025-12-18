@@ -1,6 +1,6 @@
 # Changelog
 
-## [3.2.0] - 2025-05-16
+## [4.0.0] - 2025-05-16
 ### Removido
 - Funcionalidade Arch Prune removida do projeto
 
