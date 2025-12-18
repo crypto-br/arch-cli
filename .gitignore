@@ -58,3 +58,7 @@ node_modules/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Histórico de conversas e desenvolvimento
+kiro-arch-cli*
+test_implementation.py

@@ -1,6 +1,6 @@
 #!/bin/bash
 # arch-cli.sh - Ferramenta para gerenciamento de contas AWS
-# Versão 3.2.0
+# Versão 4.0.0
 # Autor: Luiz Machado (@cryptobr)
 
 # Carregar módulos

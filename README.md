@@ -4,7 +4,7 @@
 Este script foi projetado para facilitar o gerenciamento do time de Arquitetura, SRE e DevOps, oferecendo ferramentas para administração de contas AWS.
 
 ## Versão
-- 3.2.0
+- 4.0.0
 
 ## Instalação
 
@@ -62,29 +62,28 @@ Após a instalação via pip, você pode usar o arch-cli como um comando:
 # Executar o menu interativo
 arch-cli
 
-# Verificar dependências
-arch-cli deps
+# 🤖 NOVOS COMANDOS INTELIGENTES (v4.0)
+# Análise completa com IA
+arch-cli analyze                    # Análise básica (30s)
+arch-cli analyze --comprehensive    # Análise detalhada (2-3min)
+arch-cli analyze --profile prod     # Com perfil específico
 
-# Executar o Prowler
-arch-cli prowler
+# Otimização de recursos
+arch-cli optimize                   # Identifica economia de custos
+arch-cli optimize --profile staging
 
-# Configurar novo perfil AWS
-arch-cli np
+# Health check rápido
+arch-cli health                     # Verificação rápida (10s)
+arch-cli health --profile prod
 
-# Listar recursos AWS
-arch-cli list
-
-# Criar usuário de suporte
-arch-cli lsu --acc <Account ID>
-
-# Definir perfil AWS ativo
-arch-cli profile <nome-do-perfil>
-
-# Gerenciar perfis AWS
-arch-cli profile
-
-# Acessar o AWS FinOps Dashboard
-arch-cli finops
+# Comandos tradicionais
+arch-cli deps                       # Verificar dependências
+arch-cli prowler                    # Executar o Prowler
+arch-cli np                         # Configurar novo perfil AWS
+arch-cli list                       # Listar recursos AWS
+arch-cli lsu --acc <Account ID>     # Criar usuário de suporte
+arch-cli profile <nome-do-perfil>   # Definir perfil AWS ativo
+arch-cli finops                     # Acessar o AWS FinOps Dashboard
 ```
 
 ### Como script Bash
@@ -149,6 +148,14 @@ O Arch CLI é compatível com:
 - macOS
 
 O script detecta automaticamente o sistema operacional e instala as dependências necessárias de acordo com a plataforma.
+
+## Melhorias na Versão 4.0 (MCP Integration)
+- **Análise Inteligente com IA**: Comandos `analyze`, `optimize`, `health` com insights avançados
+- **Integração MCP (Model Context Protocol)**: Análises contextuais profundas
+- **Modo Fallback**: Funciona com ou sem servidor MCP
+- **Análise Preditiva**: Previsão de custos e problemas
+- **Auto-remediation**: Sugestões de correção automática
+- **Dashboard Inteligente**: Visualização avançada de métricas
 
 ## Melhorias na Versão 3.0
 - Adição de funcionalidades para times de SRE, Infra e DevOps

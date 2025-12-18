@@ -6,11 +6,13 @@ Módulo principal do Arch CLI que serve como ponto de entrada para o comando arc
 import os
 import sys
 import subprocess
+import asyncio
 import click
 from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 from .dependencies import check_dependencies as check_deps_py
+from .mcp.smart_analyzer import SmartAnalyzer
 
 console = Console()
 
@@ -26,7 +28,7 @@ def show_header():
     header.append("  __ _ _ __ ___| |__         ___| (_)\n", style="green")
     header.append(" / _` | '__/ __| '_ \\ _____ / __| | |\n", style="green")
     header.append("| (_| | | | (__| | | |_____| (__| | |\n", style="green")
-    header.append(" \\__,_|_|  \\___|_| |_|      \\___|_|_| v3.2\n", style="green")
+    header.append(" \\__,_|_|  \\___|_| |_|      \\___|_|_| v4.0\n", style="green")
     header.append("\n")
     header.append("Created by: Luiz Machado (@cryptobr)\n")
     
@@ -34,7 +36,7 @@ def show_header():
 
 @click.group(invoke_without_command=True)
 @click.pass_context
-@click.version_option(version="3.2.0")
+@click.version_option(version="4.0.0")
 def main(ctx):
     """Arch CLI - Ferramenta para gerenciamento de times de Arquitetura, SRE e DevOps com foco em AWS"""
     if ctx.invoked_subcommand is None:
@@ -116,6 +118,92 @@ def profile(profile_name):
 def finops():
     """Acessa o menu do AWS FinOps Dashboard"""
     subprocess.run(["/bin/bash", BASH_SCRIPT, "--finops"])
+
+@main.command()
+@click.option("--profile", help="AWS profile to use")
+@click.option("--comprehensive", is_flag=True, help="Run comprehensive analysis (slower but more detailed)")
+def analyze(profile, comprehensive):
+    """🤖 Smart AWS infrastructure analysis with AI insights"""
+    async def run_analysis():
+        analyzer = SmartAnalyzer(profile)
+        console.print("🚀 Starting smart AWS analysis...")
+        
+        if not comprehensive:
+            console.print("💡 Tip: Use --comprehensive for detailed analysis")
+        
+        results = await analyzer.analyze_infrastructure(comprehensive=comprehensive)
+        analyzer.display_analysis_results(results)
+    
+    asyncio.run(run_analysis())
+
+@main.command()
+@click.option("--profile", help="AWS profile to use")
+def optimize(profile):
+    """⚡ Smart resource optimization with cost savings recommendations"""
+    async def run_optimization():
+        analyzer = SmartAnalyzer(profile)
+        console.print("🎯 Analyzing resources for optimization opportunities...")
+        
+        from .mcp.aws_tools import AWSTools
+        aws_tools = AWSTools(profile)
+        results = await aws_tools.optimize_resources()
+        
+        if "error" in results:
+            console.print(f"[red]❌ Optimization failed: {results['error']}[/red]")
+            return
+        
+        # Display optimization results
+        console.print(Panel("⚡ Resource Optimization Results", style="green"))
+        
+        total_savings = results.get("total_potential_savings", 0)
+        if total_savings > 0:
+            console.print(f"[green]💰 Potential monthly savings: ${total_savings:.2f}[/green]")
+        
+        underutilized = results.get("underutilized_resources", [])
+        if underutilized:
+            console.print(f"\n📊 Found {len(underutilized)} underutilized resources:")
+            for resource in underutilized[:5]:  # Show top 5
+                console.print(f"  • {resource.get('resource_id', 'Unknown')} - Save ${resource.get('monthly_savings', 0):.2f}/month")
+        
+        recommendations = results.get("recommendations", [])
+        if recommendations:
+            console.print("\n💡 [bold]Recommendations:[/bold]")
+            for rec in recommendations:
+                console.print(f"  • {rec}")
+    
+    asyncio.run(run_optimization())
+
+@main.command()
+@click.option("--profile", help="AWS profile to use")
+def health(profile):
+    """🏥 Quick health check of AWS infrastructure"""
+    async def run_health_check():
+        analyzer = SmartAnalyzer(profile)
+        console.print("🔍 Running quick health check...")
+        
+        results = await analyzer.quick_health_check()
+        
+        if results.get("status") == "unhealthy":
+            console.print(f"[red]❌ Health check failed: {results.get('error', 'Unknown error')}[/red]")
+            return
+        
+        # Display health status
+        console.print(Panel("🏥 AWS Infrastructure Health Check", style="blue"))
+        
+        mcp_status = "🤖 Available" if results.get("mcp_available") else "📊 Basic Mode"
+        console.print(f"MCP Status: {mcp_status}")
+        
+        if "monthly_cost" in results:
+            console.print(f"Monthly Cost: ${results['monthly_cost']:.2f}")
+        
+        if "security_issues" in results:
+            issues = results["security_issues"]
+            color = "red" if issues > 0 else "green"
+            console.print(f"Security Issues: [{color}]{issues}[/{color}]")
+        
+        console.print(f"[green]✅ Overall Status: {results['status'].title()}[/green]")
+    
+    asyncio.run(run_health_check())
 
 if __name__ == "__main__":
     main()
