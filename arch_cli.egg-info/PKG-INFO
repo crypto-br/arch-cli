@@ -1,3 +1,27 @@
+Metadata-Version: 2.4
+Name: arch-cli
+Version: 3.2.0
+Summary: Ferramenta para gerenciamento de times de Arquitetura, SRE e DevOps com foco em AWS
+Author-email: Luiz Machado <cryptobr@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/yourusername/arch-cli
+Project-URL: Bug Tracker, https://github.com/yourusername/arch-cli/issues
+Keywords: aws,cli,devops,sre,architecture
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Environment :: Console
+Classifier: Topic :: Utilities
+Classifier: Topic :: System :: Systems Administration
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: click>=8.0.0
+Requires-Dist: boto3>=1.20.0
+Requires-Dist: rich>=10.0.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: asyncio-mqtt>=0.11.0
+Dynamic: requires-python
+
 # Arch CLI
 
 ## Visão Geral
@@ -62,28 +86,29 @@ Após a instalação via pip, você pode usar o arch-cli como um comando:
 # Executar o menu interativo
 arch-cli
 
-# 🤖 NOVOS COMANDOS INTELIGENTES (v4.0)
-# Análise completa com IA
-arch-cli analyze                    # Análise básica (30s)
-arch-cli analyze --comprehensive    # Análise detalhada (2-3min)
-arch-cli analyze --profile prod     # Com perfil específico
+# Verificar dependências
+arch-cli deps
 
-# Otimização de recursos
-arch-cli optimize                   # Identifica economia de custos
-arch-cli optimize --profile staging
+# Executar o Prowler
+arch-cli prowler
 
-# Health check rápido
-arch-cli health                     # Verificação rápida (10s)
-arch-cli health --profile prod
+# Configurar novo perfil AWS
+arch-cli np
 
-# Comandos tradicionais
-arch-cli deps                       # Verificar dependências
-arch-cli prowler                    # Executar o Prowler
-arch-cli np                         # Configurar novo perfil AWS
-arch-cli list                       # Listar recursos AWS
-arch-cli lsu --acc <Account ID>     # Criar usuário de suporte
-arch-cli profile <nome-do-perfil>   # Definir perfil AWS ativo
-arch-cli finops                     # Acessar o AWS FinOps Dashboard
+# Listar recursos AWS
+arch-cli list
+
+# Criar usuário de suporte
+arch-cli lsu --acc <Account ID>
+
+# Definir perfil AWS ativo
+arch-cli profile <nome-do-perfil>
+
+# Gerenciar perfis AWS
+arch-cli profile
+
+# Acessar o AWS FinOps Dashboard
+arch-cli finops
 ```
 
 ### Como script Bash
@@ -148,14 +173,6 @@ O Arch CLI é compatível com:
 - macOS
 
 O script detecta automaticamente o sistema operacional e instala as dependências necessárias de acordo com a plataforma.
-
-## Melhorias na Versão 4.0 (MCP Integration)
-- **Análise Inteligente com IA**: Comandos `analyze`, `optimize`, `health` com insights avançados
-- **Integração MCP (Model Context Protocol)**: Análises contextuais profundas
-- **Modo Fallback**: Funciona com ou sem servidor MCP
-- **Análise Preditiva**: Previsão de custos e problemas
-- **Auto-remediation**: Sugestões de correção automática
-- **Dashboard Inteligente**: Visualização avançada de métricas
 
 ## Melhorias na Versão 3.0
 - Adição de funcionalidades para times de SRE, Infra e DevOps

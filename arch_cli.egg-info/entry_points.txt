@@ -1,0 +1,2 @@
+[console_scripts]
+arch-cli = arch_cli.main:main
